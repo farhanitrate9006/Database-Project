@@ -4,14 +4,14 @@ oracledb.autoCommit = true;
 // creates connection pool for oracledb
 async function startup() {
     console.log('starting up database.');
-    await oracledb.createPool({
+    await oracledb.getConnection({
         user: process.env.DB_USER,
         password: process.env.DB_PASS,
-        connectstring: process.env.DB_CONNECTSTRING,
+        connectionString: process.env.DB_CONNECT_STRING,
         poolMin: 4,
         poolMax: 10,
         poolIncrement: 1
-    });    
+    }, dbConfig.hrPool);    
     console.log('pool created');
 }
 
