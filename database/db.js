@@ -11,7 +11,7 @@ async function startup() {
         poolMin: 4,
         poolMax: 10,
         poolIncrement: 1
-    }, dbConfig.hrPool);    
+    });    
     console.log('pool created');
 }
 
