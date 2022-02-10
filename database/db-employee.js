@@ -10,7 +10,7 @@ async function getEmployeeById(id) {
     const binds = {
         id : id
     };
-    return (await database.execute(sql, binds, database.options)).rows[0];
+    return (await database.execute(sql, binds, database.options)).rows;
 }
 
 module.exports = {

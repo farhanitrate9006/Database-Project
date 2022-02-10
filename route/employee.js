@@ -2,16 +2,20 @@
 require('dotenv').config();
 const express = require('express');
 
+//app.use(bodyParser.json());
+
 const db_employees = require('../database/db-employee');
 
 const router = express.Router({ mergeParams : true });
 
+// get all employees
 router.get('/all', async (req, res) => {
-    let tagsObj = await db_employees.getAllEmployees();
+    let employeesObj = await db_employees.getAllEmployees();
     let employees = [];
-    for(let i = 0; i<tagsObj.length; i++){
-        employees.push(tagsObj[i]);
-        //console.log(tagsObj[i]);
+
+    for(let i = 0; i<employeesObj.length; i++){
+        employees.push(employeesObj[i]);
+        //console.log(employeesObj[i]);
     }
 
     res.render('table.ejs', {
@@ -19,8 +23,9 @@ router.get('/all', async (req, res) => {
     });   
 });
 
-//TODO add contest linking to blog
-router.post('/:id', async (req, res, next)=> {
+// get a specific employee by his id
+router.get('/:id', async (req, res) => {
+    // returns a list with 1 employee
     let employee = await db_employees.getEmployeeById(req.params.id);
     res.render('table.ejs', {
         employees: employee
