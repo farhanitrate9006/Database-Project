@@ -9,7 +9,7 @@ const db_employees = require('../database/db-employee');
 const router = express.Router({ mergeParams : true });
 
 // get all employees
-router.get('/all', async (req, res) => {
+router.get('/all', async(req, res) => {
     let employeesObj = await db_employees.getAllEmployees();
     // let employees = [];
 
@@ -18,7 +18,7 @@ router.get('/all', async (req, res) => {
     //     //console.log(employeesObj[i]);
     // }
 
-    res.render('table.ejs', {
+    res.render('table', {
         employees: employeesObj
     });   
 });
@@ -27,7 +27,7 @@ router.get('/all', async (req, res) => {
 router.get('/:id', async (req, res) => {
     // returns a list with 1 employee
     let employee = await db_employees.getEmployeeById(req.params.id);
-    res.render('table.ejs', {
+    res.render('table', {
         employees: employee
     });  
 });
