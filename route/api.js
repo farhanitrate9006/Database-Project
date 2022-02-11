@@ -9,6 +9,8 @@ const express = require('express');
 const router = express.Router({ mergeParams : true });
 
 const db_departments = require('../database/db-dept');
+const db_tests = require('../database/db-test');
+const db_medicines = require('../database/db-medicine');
 // DIVIDE THE ROUTES ACCORDING TO THE DATA WHATEVER
 // router.use("/",(req,res) => {
 //     res.render('reg_form');
@@ -19,12 +21,25 @@ router.get('/', async(req, res) => {
     // console.log(`${id} logged in`);
     //res.send('you logged in');
     let deptObj = await db_departments.getAllDepartments();
-    res.render('home', { depts: deptObj });
+    let testObj = await db_tests.getAllTests();
+    let medicineObj = await db_medicines.getAllMedicines();
+
+    // console.log(deptObj)
+    // console.log(testObj)
+    // console.log(medicineObj)
+
+    res.render('home', { 
+        depts: deptObj,
+        tests: testObj,
+        medicines: medicineObj
+    });
 });
 
 //router.use("/signup",require('./signup'));
 //router.use("/login",require('./login'));
 router.use('/employee', require('./employee'));
 router.use('/dept', require('./dept'));
+router.use('/test', require('./test'));
+router.use('/medicine', require('./medicine'));
 
 module.exports = router;

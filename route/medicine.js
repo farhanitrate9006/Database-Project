@@ -8,8 +8,6 @@ const db_departments = require('../database/db-dept');
 const db_tests = require('../database/db-test');
 const db_medicines = require('../database/db-medicine');
 
-const db_doctors = require('../database/db-doctor');
-
 const router = express.Router({ mergeParams : true });
 
 // get all employees
@@ -34,35 +32,16 @@ router.get('/:id', async(req, res) => {
     let testObj = await db_tests.getAllTests();
     let medicineObj = await db_medicines.getAllMedicines();
 
-    let tempDept = await db_departments.getDepartmentById(req.params.id);
-    let dept = tempDept[0];
+    let tempMed = await db_medicines.getMedicineById(req.params.id);
+    let medicine = tempMed[0];
 
-    res.render('dept', {
+    res.render('medicine', {
         depts: deptObj,
         tests: testObj,
         medicines: medicineObj,
-        dept: dept
+        medicine: medicine
     });  
 });
 
-router.get('/:id/doctor', async(req, res) => {
-    // returns a list with 1 employee
-    let deptObj = await db_departments.getAllDepartments();
-    let testObj = await db_tests.getAllTests();
-    let medicineObj = await db_medicines.getAllMedicines();
-
-    let doctors = await db_doctors.getDoctorsByDept(req.params.id);
-    //let dept = tempDept[0];
-    //console.log(req.params.DEPT_NAME)
-
-    res.render('table', {
-        depts: deptObj,
-        tests: testObj,
-        medicines: medicineObj,
-        tableTitle: doctors[0].DEPT_NAME + ' Doctors', 
-        columns: ['ID', 'DOCTOR_NAME', 'DEPT_NAME'],
-        list: doctors
-    });  
-});
 
 module.exports = router;
