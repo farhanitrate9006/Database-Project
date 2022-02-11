@@ -4,15 +4,15 @@ const router = require('express-promise-router')();
 // router.use("/",(req,res) => {
 //     res.render('reg_form');
 // })
-router.get("/", (req,res) => {
+router.get('/', (req,res) => {
     // const id = (req.user === null)? null : req.user.id;
     // console.log(`${id} logged in`);
-    res.send('you logged in');
-    //res.render('table')
+    //res.send('you logged in');
+    res.render('home')
 });
 
 //router.use("/signup",require('./signup'));
 //router.use("/login",require('./login'));
-router.use("/employee", require('./employee'));
+router.use('/employee', require('./employee'));
 
 module.exports = router;

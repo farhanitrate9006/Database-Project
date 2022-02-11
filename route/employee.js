@@ -11,15 +11,15 @@ const router = express.Router({ mergeParams : true });
 // get all employees
 router.get('/all', async (req, res) => {
     let employeesObj = await db_employees.getAllEmployees();
-    let employees = [];
+    // let employees = [];
 
-    for(let i = 0; i<employeesObj.length; i++){
-        employees.push(employeesObj[i]);
-        //console.log(employeesObj[i]);
-    }
+    // for(let i = 0; i<employeesObj.length; i++){
+    //     employees.push(employeesObj[i]);
+    //     //console.log(employeesObj[i]);
+    // }
 
     res.render('table.ejs', {
-        employees: employees
+        employees: employeesObj
     });   
 });
 
