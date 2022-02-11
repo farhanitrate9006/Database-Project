@@ -19,7 +19,8 @@ router.get('/all', async(req, res) => {
     // }
 
     res.render('table', {
-        employees: employeesObj
+        list: employeesObj,
+        columns: ['ID', 'NAME', 'JOB_TYPE', 'SALARY']
     });   
 });
 
@@ -28,7 +29,7 @@ router.get('/:id', async (req, res) => {
     // returns a list with 1 employee
     let employee = await db_employees.getEmployeeById(req.params.id);
     res.render('table', {
-        employees: employee
+        list: employee
     });  
 });
 
