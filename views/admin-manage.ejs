@@ -1,0 +1,54 @@
+<%- include('./admin-sidebar') -%>
+
+    <div class="container" style="margin-left: 250px; max-width: 75%;">
+      <h1> <%= tableTitle %> </h1>
+    
+      <table class="table table-dark table-striped">
+          <thead>
+            <tr>
+              <%  columns.forEach(function(column) { %>
+                <th scope="col"> <%= column %> </th>
+              <% }) %>
+            </tr>
+          </thead>
+          <tbody>
+
+            <%  list.forEach(function(row) { %>
+              <tr>
+                <%  columns.forEach(function(column) { %>           
+                  <td scope="col"> <%= row[column] %> </td>
+                <% }) %>
+              </tr> 
+            <% }) %>
+
+
+          </tbody>
+      </table>
+
+      <script src="js/jquery.js"></script>        
+      <script src="js/bootstrap.js"></script>
+
+      <script>
+          /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+          var dropdown = document.getElementsByClassName("dropdown-btn");
+          var i;
+          
+          for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+            dropdownContent.style.display = "none";
+            } else {
+            dropdownContent.style.display = "block";
+            }
+            });
+          }
+      </script>
+    </div>
+<!-- </body>
+
+
+</html> -->
+
+<%- include('./footer'); -%>

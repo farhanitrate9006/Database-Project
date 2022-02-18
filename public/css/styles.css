@@ -3,11 +3,11 @@ html {
     position: relative;
   }
   
-  .container-fluid {
+  .header-container-fluid {
       padding-top: 70px;
       padding-bottom: 70px;
   }
-  .navbar {
+  .header-navbar {
       padding-top: 15px;
       padding-bottom: 15px;
       border: 0;
@@ -16,7 +16,7 @@ html {
       font-size: 12px;
       letter-spacing: 5px;
   }
-  .navbar-nav  li a:hover {
+  .header-navbar-nav  li a:hover {
       color: #1abc9c !important;
   }
   

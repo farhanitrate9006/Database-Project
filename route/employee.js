@@ -48,7 +48,9 @@ router.get('/:id', async (req, res) => {
         depts: deptObj,
         tests: testObj,
         medicines: medicineObj,
-        list: employee
+        tableTitle: 'Employee',
+        list: employee,
+        columns: ['ID', 'NAME', 'JOB_TYPE', 'SALARY']
     });  
 });
 
