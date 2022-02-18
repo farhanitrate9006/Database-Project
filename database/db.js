@@ -7,10 +7,11 @@ async function startup() {
     await oracledb.createPool({
         user: process.env.DB_USER,
         password: process.env.DB_PASS,
-        connectstring: process.env.DB_CONNECTSTRING,
+        connectionString: process.env.DB_CONNECT_STRING,
         poolMin: 4,
         poolMax: 10,
         poolIncrement: 1
+        //poolAlias: 'hrPool'
     });    
     console.log('pool created');
 }
@@ -23,12 +24,12 @@ async function shutdown() {
         await oracledb.getPool().close(10);
         console.log('Pool closed');
     } catch(err) {
-        console.log("ERROR shutting down database: "+err.message);
+        console.log("ERROR shutting down database: " + err.message);
     }
 }
 
 // code to execute sql
-async function execute(sql, binds, options){
+async function execute(sql, binds, options) {
     let connection, results;
     try {
         // Get a connection from the default pool
@@ -51,7 +52,7 @@ async function execute(sql, binds, options){
 }
 
 // code to execute many sql
-async function executeMany(sql, binds, options){
+async function executeMany(sql, binds, options) {
     let connection;
     try {
         // Get a connection from the default pool
