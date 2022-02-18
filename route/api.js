@@ -39,9 +39,9 @@ router.get('/', async(req, res) => {
     
 });
 
-//router.use("/signup",require('./signup'));
-//router.use("/login",require('./login'));
-router.use('/employee', require('./employee'));
+// router.use("/signup",require('./signup'));
+// router.use("/login",require('./login'));
+// router.use('/employee', require('./employee'));
 router.use('/dept', require('./dept'));
 router.use('/test', require('./test'));
 router.use('/medicine', require('./medicine'));

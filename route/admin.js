@@ -18,8 +18,10 @@ router.get('/', async(req, res) => {
     res.render('admin-manage', {
         tableTitle: 'All Employees',
         list: employeesObj,
-        columns: ['ID', 'NAME', 'JOB_TYPE', 'SALARY']
+        columns: ['ID', 'NAME', 'JOB_TYPE']
     });   
 });
+
+router.use('/employee', require('./employee'));
 
 module.exports = router;
