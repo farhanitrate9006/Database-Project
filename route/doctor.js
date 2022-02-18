@@ -15,21 +15,19 @@ router.get('/', async(req, res) => {
     res.render('admin-manage', {
         tableTitle: 'All Doctors',
         list: doctorsObj,
+        //idLink: '/admin/employee/doctor/id/',
         columns: ['ID', 'DOCTOR_NAME', 'DEPT_NAME']
     });   
 });
 
 // get a specific employee by his id
-// router.get('/:id', async(req, res) => {
-//     let employee = await db_employees.getEmployeeById(req.params.id);
-//     res.render('table', {
-//         depts: deptObj,
-//         tests: testObj,
-//         medicines: medicineObj,
-//         tableTitle: 'Employee',
-//         list: employee,
-//         columns: ['ID', 'NAME', 'JOB_TYPE', 'SALARY']
-//     });  
-// });
+router.get('/id/:id', async(req, res) => {
+    let doctors = await db_doctors.getDoctorById(req.params.id);
+    res.render('admin-employee', {
+        tableTitle: 'Doctor Info',
+        list: doctors[0],
+        columns: ['ID', 'DOCTOR_NAME', 'DEPT_NAME']
+    });  
+});
 
 module.exports = router;

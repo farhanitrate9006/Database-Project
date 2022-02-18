@@ -17,16 +17,18 @@ async function getDoctorsByDept(dept) {
     //return (await database.execute(sql, {}, database.options)).rows;
 }
 
-// async function getDepartmentById(id) {
-//     const sql = `SELECT * FROM DEPARTMENTS WHERE ID = :id`;
-//     const binds = {
-//         id : id
-//     };
-//     return (await database.execute(sql, binds, database.options)).rows;
-// }
+async function getDoctorById(id) {
+    const sql = `SELECT D.ID as ID, E.NAME as DOCTOR_NAME, P.NAME as DEPT_NAME
+    FROM DOCTORS D JOIN DEPARTMENTS P on (D.DEPARTMENT_ID = P.ID)
+    JOIN EMPLOYEES E on (D.ID = E.ID) where D.ID = :id`;
+    const binds = {
+        id : id
+    };
+    return (await database.execute(sql, binds, database.options)).rows;
+}
 
 module.exports = {
     getAllDoctors,
-    getDoctorsByDept
-    //getDepartmentById
+    getDoctorsByDept,
+    getDoctorById
 }

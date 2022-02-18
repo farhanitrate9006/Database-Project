@@ -4,30 +4,19 @@
       <h1> <%= tableTitle %> </h1>
     
       <table class="table table-striped">
-          <thead class="table-dark">
+          <!-- <thead class="table-dark">
             <tr>
               <%  columns.forEach(function(column) { %>
                 <th scope="col"> <%= column %> </th>
               <% }) %>
             </tr>
-          </thead>
+          </thead> -->
           <tbody>
 
-            <%  list.forEach(function(row) { %>
+            <%  columns.forEach(function(column) { %>
               <tr>
-                <%  columns.forEach(function(column) { %> 
-
-                  <td scope="col"> 
-
-                    <% if(column === 'ID') { %>
-                      <a href="/admin/employee/id/<%= row[column] %>"> <%= row[column] %> </a>
-                    <% } else { %>
-                      <%= row[column] %>
-                    <% } %>
-
-                  </td>
-
-                <% }) %>
+                <td scope="col"> <%= column %> </td>
+                <td scope="col"> <%= list[column] %> </td>
               </tr> 
             <% }) %>
 
@@ -48,9 +37,9 @@
             this.classList.toggle("active");
             var dropdownContent = this.nextElementSibling;
             if (dropdownContent.style.display === "block") {
-              dropdownContent.style.display = "none";
+                dropdownContent.style.display = "none";
             } else {
-              dropdownContent.style.display = "block";
+                dropdownContent.style.display = "block";
             }
             });
           }

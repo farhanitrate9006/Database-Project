@@ -21,12 +21,13 @@ router.get('/', async(req, res) => {
 // get a specific employee by his id
 router.get('/id/:id', async(req, res) => {
     // returns a list with 1 employee
-    let employee = await db_employees.getEmployeeById(req.params.id);
-    res.render('table', {
-        tableTitle: 'Employee',
-        list: employee,
-        columns: ['ID', 'NAME', 'JOB_TYPE']
-    });  
+    // let employees = await db_employees.getEmployeeById(req.params.id);
+    // res.render('admin-employee', {
+    //     tableTitle: 'Employee Info',
+    //     list: employees[0],
+    //     columns: ['ID', 'NAME', 'JOB_TYPE']
+    // });
+    res.redirect('/admin/employee/doctor/id/' + req.params.id);  
 });
 
 router.use('/doctor', require('./doctor'));
