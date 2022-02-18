@@ -24,4 +24,4 @@ router.get('/', async(req, res) => {
 
 router.use('/employee', require('./employee'));
 
-module.exports = router;
+module.exports = router
