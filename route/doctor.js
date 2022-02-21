@@ -12,10 +12,10 @@ const router = express.Router({ mergeParams : true });
 router.get('/', async(req, res) => {
     let doctorsObj = await db_doctors.getAllDoctors();
 
-    res.render('admin-manage', {
+    res.render('admin-employees', {
         tableTitle: 'All Doctors',
         list: doctorsObj,
-        //idLink: '/admin/employee/doctor/id/',
+        addLink: '/admin/employee/doctor/add/',
         columns: ['ID', 'DOCTOR_NAME', 'DEPT_NAME']
     });   
 });
@@ -23,10 +23,26 @@ router.get('/', async(req, res) => {
 // get a specific employee by his id
 router.get('/id/:id', async(req, res) => {
     let doctors = await db_doctors.getDoctorById(req.params.id);
-    res.render('admin-employee', {
+    res.render('admin-employee-info', {
         tableTitle: 'Doctor Info',
         list: doctors[0],
         columns: ['ID', 'DOCTOR_NAME', 'DEPT_NAME']
+    });  
+});
+
+router.get('/id/:id/edit', async(req, res) => {
+    let doctors = await db_doctors.getDoctorById(req.params.id);
+    res.render('admin-employee-form', {
+        //tableTitle: 'Doctor Info',
+        list: doctors[0],
+        //columns: ['ID', 'DOCTOR_NAME', 'DEPT_NAME']
+    });  
+});
+
+router.get('/add', async(req, res) => {
+    //let doctors = await db_doctors.getDoctorById(req.params.id);
+    res.render('admin-employee-form', {
+        type: 'Doctor'
     });  
 });
 

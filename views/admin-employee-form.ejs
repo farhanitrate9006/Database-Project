@@ -1,32 +1,23 @@
 <%- include('./admin-sidebar') -%>
 
-    <div class="container" style="margin-left: 250px; max-width: 75%;">
-      <h1> <%= tableTitle %> </h1>
-    
-      <table class="table table-striped">
-          <!-- <thead class="table-dark">
-            <tr>
-              <%  columns.forEach(function(column) { %>
-                <th scope="col"> <%= column %> </th>
-              <% }) %>
-            </tr>
-          </thead> -->
-          <tbody>
+<div class="container" style="margin-left: 250px; max-width: 25%; font-size: 3rem;">
+    <h1>Add New <%= type %></h1>
+    <form action="/action_page.php" style="font-size: 2rem;">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Enter email" 
+        name="email" value="<%= (typeof list !== 'undefined') ? list.id : '' %>" required>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
-            <%  columns.forEach(function(column) { %>
-              <tr>
-                <td scope="col"> <%= column %> </td>
-                <td scope="col"> <%= list[column] %> </td>
-              </tr> 
-            <% }) %>
-
-
-          </tbody>
-      </table>
-
-      <script src="js/jquery.js"></script>        
+    <script src="js/jquery.js"></script>        
       <script src="js/bootstrap.js"></script>
-
+  
       <script>
           /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
           var dropdown = document.getElementsByClassName("dropdown-btn");
@@ -44,10 +35,7 @@
             });
           }
       </script>
-    </div>
-<!-- </body>
-
-
-</html> -->
+</div>
+  
 
 <%- include('./footer'); -%>

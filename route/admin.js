@@ -15,7 +15,7 @@ router.get('/', async(req, res) => {
     //     //console.log(employeesObj[i]);
     // }
 
-    res.render('admin-manage', {
+    res.render('admin-employees', {
         tableTitle: 'All Employees',
         list: employeesObj,
         columns: ['ID', 'NAME', 'JOB_TYPE']

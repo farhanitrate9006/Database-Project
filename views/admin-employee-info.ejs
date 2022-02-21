@@ -4,30 +4,19 @@
       <h1> <%= tableTitle %> </h1>
     
       <table class="table table-striped">
-          <thead class="table-dark">
+          <!-- <thead class="table-dark">
             <tr>
               <%  columns.forEach(function(column) { %>
                 <th scope="col"> <%= column %> </th>
               <% }) %>
             </tr>
-          </thead>
+          </thead> -->
           <tbody>
 
-            <%  list.forEach(function(row) { %>
+            <%  columns.forEach(function(column) { %>
               <tr>
-                <%  columns.forEach(function(column) { %> 
-
-                  <td scope="col"> 
-
-                    <% if(column === 'ID') { %>
-                      <a href="/admin/employee/id/<%= row[column] %>"> <%= row[column] %> </a>
-                    <% } else { %>
-                      <%= row[column] %>
-                    <% } %>
-
-                  </td>
-
-                <% }) %>
+                <td scope="col"> <%= column %> </td>
+                <td scope="col"> <%= list[column] %> </td>
               </tr> 
             <% }) %>
 
@@ -35,9 +24,12 @@
           </tbody>
       </table>
 
+      <a role="button" href="/admin/employee/id/<%= list.id %>/edit" class="btn btn-primary btn-lg" style="font-size: 1.75rem; margin: 2.5% 2.5% 0 0;"> Edit </a>
+      <button type="button" class="btn btn-warning btn-lg" style="font-size: 1.75rem; margin: 2.5% 2.5% 0 0;">Delete</button>
+
       <script src="js/jquery.js"></script>        
       <script src="js/bootstrap.js"></script>
-
+  
       <script>
           /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
           var dropdown = document.getElementsByClassName("dropdown-btn");
@@ -48,9 +40,9 @@
             this.classList.toggle("active");
             var dropdownContent = this.nextElementSibling;
             if (dropdownContent.style.display === "block") {
-              dropdownContent.style.display = "none";
+                dropdownContent.style.display = "none";
             } else {
-              dropdownContent.style.display = "block";
+                dropdownContent.style.display = "block";
             }
             });
           }
