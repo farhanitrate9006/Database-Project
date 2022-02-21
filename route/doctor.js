@@ -33,17 +33,33 @@ router.get('/id/:id', async(req, res) => {
 router.get('/id/:id/edit', async(req, res) => {
     let doctors = await db_doctors.getDoctorById(req.params.id);
     res.render('admin-employee-form', {
-        //tableTitle: 'Doctor Info',
+        formTitle: 'Edit Doctor Info',
         list: doctors[0],
+        postLink: '/admin/employee/doctor/edit/'
         //columns: ['ID', 'DOCTOR_NAME', 'DEPT_NAME']
     });  
+});
+
+router.post('/edit', async(req, res) => {
+    console.log('he');
+    console.log(req.body.email);
 });
 
 router.get('/add', async(req, res) => {
     //let doctors = await db_doctors.getDoctorById(req.params.id);
     res.render('admin-employee-form', {
-        type: 'Doctor'
+        formTitle: 'Add New Doctor',
+        postLink: '/admin/employee/doctor/add/'
     });  
+});
+
+router.post('/add', async(req, res) => {
+    console.log('she');
+    console.log(req.body);
+    const doctor = req.body;
+
+    //db_doctors.addDoctor(doctor);
+    res.redirect('/admin/employee/doctor/');
 });
 
 module.exports = router;

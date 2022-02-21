@@ -1,17 +1,62 @@
 <%- include('./admin-sidebar') -%>
 
 <div class="container" style="margin-left: 250px; max-width: 25%; font-size: 3rem;">
-    <h1>Add New <%= type %></h1>
-    <form action="/action_page.php" style="font-size: 2rem;">
+    <h1><%= formTitle %></h1>
+    <form action="<%= postLink %>" method="post" style="font-size: 2rem;">
       <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Enter email" 
-        name="email" value="<%= (typeof list !== 'undefined') ? list.id : '' %>" required>
+        <!-- <label for="id">ID</label> -->
+        <input class="form-control" id="id" placeholder="Enter ID" name="id" 
+        value="<%= (typeof list !== 'undefined') ? list.ID : '' %>" required>
       </div>
+
       <div class="form-group">
-        <label for="pwd">Password</label>
-        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+        <!-- <label for="name">Name</label> -->
+        <input  class="form-control" id="name" placeholder="Enter name" name="name" 
+        value="<%= (typeof list !== 'undefined') ? list.DOCTOR_NAME : '' %>" required>
       </div>
+
+      <div class="form-group">
+        <!-- <label for="phone_number">Phone Number</label> -->
+        <input class="form-control" id="phone_number" placeholder="Enter phone number" name="phone_number" 
+        value="<%= (typeof list !== 'undefined') ? list.PHONE_NUMBER : '' %>" required>
+      </div>
+
+      <div class="form-group">
+        <!-- <label for="email">Salary</label> -->
+        <input class="form-control" id="salary" placeholder="Enter salary" name="salary" 
+        value="<%= (typeof list !== 'undefined') ? list.SALARY : '' %>" required>
+      </div>
+
+      <div class="form-group">
+        <!-- <label for="email">Department ID</label> -->
+        <input class="form-control" id="department_id" placeholder="Enter department id" name="department_id" 
+        value="<%= (typeof list !== 'undefined') ? list.DEPARTMENT_ID : '' %>" required>
+      </div>
+
+      <div class="form-group">
+        <!-- <label for="pwd">Email</label> -->
+        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email"
+        value="<%= (typeof list !== 'undefined') ? list.EMAIL : '' %>" required>
+      </div>
+
+      <div class="form-group">
+        <!-- <label for="pwd">Email</label> -->
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password"
+        value="<%= (typeof list !== 'undefined') ? list.PASSWORD : '' %>" required>
+      </div>
+
+      <div class="form-group">
+        <label for="categories">Mao</label>
+        <select name="categories" value="C">
+            <option value="a">
+              A
+            </option>
+            <option value="b">
+              B
+            </option>
+        </select>
+      </div>
+
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
