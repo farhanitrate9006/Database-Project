@@ -18,17 +18,53 @@ async function getDoctorsByDept(dept) {
 }
 
 async function getDoctorById(id) {
-    const sql = `SELECT D.ID as ID, E.NAME as DOCTOR_NAME, P.NAME as DEPT_NAME
+    const sql = `SELECT D.ID as ID, E.NAME as DOCTOR_NAME, E.PHONE_NUMBER as PHONE_NUMBER,
+    E.SALARY as SALARY, P.ID as DEPARTMENT_ID, D.EMAIL as EMAIL, L.PASSWORD as PASSWORD, P.NAME as DEPT_NAME
     FROM DOCTORS D JOIN DEPARTMENTS P on (D.DEPARTMENT_ID = P.ID)
-    JOIN EMPLOYEES E on (D.ID = E.ID) where D.ID = :id`;
+    JOIN EMPLOYEES E on (D.ID = E.ID) 
+    JOIN LOGIN L on (D.ID = L.ID) where D.ID = :id`;
     const binds = {
         id : id
     };
     return (await database.execute(sql, binds, database.options)).rows;
 }
 
+async function getDoctorByEmail(email) {
+    const sql = `SELECT D.ID as ID, E.NAME as DOCTOR_NAME, E.PHONE_NUMBER as PHONE_NUMBER,
+    E.SALARY as SALARY, P.ID as DEPARTMENT_ID, D.EMAIL as EMAIL, L.PASSWORD as PASSWORD, P.NAME as DEPT_NAME
+    FROM DOCTORS D JOIN DEPARTMENTS P on (D.DEPARTMENT_ID = P.ID)
+    JOIN EMPLOYEES E on (D.ID = E.ID) where D.EMAIL = :email
+    JOIN LOGIN L on (D.ID = L.ID) where D.EMAIL = :email`;
+    const binds = {
+        email : email
+    };
+    return (await database.execute(sql, binds, database.options)).rows;
+}
+
+async function addDoctor(doctor) {
+    const sql = `
+        BEGIN
+            ADD_DOCTOR(:ID, :NAME, :PHONE_NUMBER, :SALARY, :DEPARTMENT_ID, :EMAIL, :PASSWORD);
+        END;
+    `;
+    const binds = {
+        ID: doctor.id,
+        NAME: doctor.name, 
+        PHONE_NUMBER: doctor.phone_number, 
+        SALARY: doctor.salary, 
+        DEPARTMENT_ID: doctor.dept, 
+        EMAIL: doctor.email,
+        PASSWORD: doctor.password
+    };
+
+    console.log(binds);
+    await database.execute(sql, binds, database.options);
+}
+
 module.exports = {
     getAllDoctors,
     getDoctorsByDept,
-    getDoctorById
+    getDoctorById,
+    getDoctorByEmail,
+    addDoctor
 }

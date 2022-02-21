@@ -35,6 +35,10 @@
           </tbody>
       </table>
 
+      <% if(typeof addLink !== "undefined") { %>
+        <a role="button" href="<%= addLink %>" class="btn btn-primary btn-lg" style="font-size: 1.75rem; margin: 2.5% 2.5% 0 0;"> Add </a>
+      <% } %>
+
       <script src="js/jquery.js"></script>        
       <script src="js/bootstrap.js"></script>
 
