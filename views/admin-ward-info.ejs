@@ -24,12 +24,30 @@
           </tbody>
       </table>
 
-      <a role="button" href="/admin/ward/id/<%= list.DEPT_ID %>/<%= list.WARD_NO %>/edit" 
-        class="btn btn-primary btn-lg" style="font-size: 1.75rem; margin: 2.5% 2.5% 0 0;"> Edit </a>
+      <% if(type === 'ward') { %>
 
-      <a role="button" href="/admin/ward/id/<%= list.DEPT_ID %>/<%= list.WARD_NO %>/delete" 
-        class="btn btn-warning btn-lg" style="font-size: 1.75rem; margin: 2.5% 2.5% 0 0;"> Delete </a>
+        <a role="button" href="/admin/ward/id/<%= list.DEPT_ID %>/<%= list.WARD_NO %>/edit" 
+          class="btn btn-primary btn-lg" style="font-size: 1.75rem; margin: 2.5% 2.5% 0 0;"> Edit </a>
+  
+        <a role="button" href="/admin/ward/id/<%= list.DEPT_ID %>/<%= list.WARD_NO %>/delete" 
+          class="btn btn-warning btn-lg" style="font-size: 1.75rem; margin: 2.5% 2.5% 0 0;"> Delete </a>  
+          
+      <% } else if(type === 'room') { %>
 
+        <a role="button" href="/admin/room/id/<%= list.ROOM_ID %>/edit" 
+          class="btn btn-primary btn-lg" style="font-size: 1.75rem; margin: 2.5% 2.5% 0 0;"> Edit </a>
+  
+        <a role="button" href="/admin/room/id/<%= list.ROOM_ID %>/delete" 
+          class="btn btn-warning btn-lg" style="font-size: 1.75rem; margin: 2.5% 2.5% 0 0;"> Delete </a>
+
+      <% } else if(type === 'bed') { %>
+        <a role="button" href="/admin/bed/add" class="btn btn-primary btn-lg" 
+        style="font-size: 1.75rem; margin: 2.5% 2.5% 0 0;"> Add </a>
+      <% } else { %>
+        
+      <% } %>
+
+     
       <script src="js/jquery.js"></script>        
       <script src="js/bootstrap.js"></script>
   

@@ -15,10 +15,11 @@ router.get('/', async(req, res) => {
     let rooms = await db_rooms.getAllRooms();
     //console.log(rooms);
 
-    res.render('admin-rooms', {
+    res.render('admin-wards', {
         tableTitle: 'Rooms', 
         columns: ['ROOM_ID', 'BEDS', 'WARD_NO', 'DEPT_NAME'],
-        list: rooms
+        list: rooms,
+        type: 'room'
     });  
 });
 
@@ -27,10 +28,11 @@ router.get('/id/:id', async(req, res) => {
     // returns a list with 1 employee
     let rooms = await db_rooms.getRoomById(req.params.id);
 
-    res.render('admin-room-info', {
+    res.render('admin-ward-info', {
         tableTitle: 'Room', 
         columns: ['ROOM_ID', 'BEDS', 'WARD_NO', 'DEPT_NAME'],
-        list: rooms[0]
+        list: rooms[0],
+        type: 'room'
     });  
 });
 

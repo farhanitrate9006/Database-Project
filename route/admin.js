@@ -25,7 +25,7 @@ router.get('/', async(req, res) => {
 router.use('/employee', require('./employee'));
 router.use('/ward', require('./ward'));
 router.use('/room', require('./room'));
-// router.use('/bed', require('./bed'));
+router.use('/bed', require('./bed'));
 // router.use('/test', require('./test'));
 // router.use('/medicine', require('./medicine'));
 

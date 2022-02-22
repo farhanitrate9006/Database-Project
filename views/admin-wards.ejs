@@ -15,15 +15,27 @@
 
             <%  list.forEach(function(row) { %>
               <tr>
+                <% columns.forEach(function(column) { %>
 
-                  <td scope="col"> 
-                    <a href="/admin/ward/id/<%= row['DEPT_ID'] %>/<%= row['WARD_NO'] %>"> <%= row['WARD_NO'] %> </a>
-                  </td>
+                  <% if(type === 'ward' && column === 'WARD_NO') { %>
+                    <td scope="col"> 
+                      <a href="/admin/ward/id/<%= row['DEPT_ID'] %>/<%= row['WARD_NO'] %>"> <%= row['WARD_NO'] %> </a>
+                    </td>
+                  <% } else if(type === 'room' && column === 'ROOM_ID') { %>
+                    <td scope="col"> 
+                      <a href="/admin/room/id/<%= row['ROOM_ID'] %>"> <%= row['ROOM_ID'] %> </a>
+                    </td>
+                  <% } else if(type === 'bed' && column === 'BED_NO') { %>
+                    <td scope="col"> 
+                      <a href="/admin/bed/id/<%= row['ROOM_ID'] %>/<%= row['BED_NO'] %>"> <%= row['BED_NO'] %> </a>
+                    </td>
+                  <% } else { %>
+                    <td scope="col"> 
+                      <%= row[column] %> 
+                    </td>
+                  <% } %>
 
-                  <td scope="col"> 
-                    <%= row['DEPT_NAME'] %> 
-                  </td>
-
+                <% }) %>              
               </tr> 
             <% }) %>
 
@@ -31,7 +43,18 @@
           </tbody>
       </table>
 
-      <a role="button" href="/admin/ward/add" class="btn btn-primary btn-lg" style="font-size: 1.75rem; margin: 2.5% 2.5% 0 0;"> Add </a>
+      <% if(type === 'ward') { %>
+        <a role="button" href="/admin/ward/add" class="btn btn-primary btn-lg" 
+        style="font-size: 1.75rem; margin: 2.5% 2.5% 0 0;"> Add </a>
+      <% } else if(type === 'room') { %>
+        <a role="button" href="/admin/room/add" class="btn btn-primary btn-lg" 
+        style="font-size: 1.75rem; margin: 2.5% 2.5% 0 0;"> Add </a>
+      <% } else if(type === 'bed') { %>
+        <a role="button" href="/admin/bed/add" class="btn btn-primary btn-lg" 
+        style="font-size: 1.75rem; margin: 2.5% 2.5% 0 0;"> Add </a>
+      <% } else { %>
+        
+      <% } %>
       
       <script src="js/jquery.js"></script>        
       <script src="js/bootstrap.js"></script>

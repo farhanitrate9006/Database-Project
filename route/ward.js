@@ -17,7 +17,8 @@ router.get('/', async(req, res) => {
     res.render('admin-wards', {
         tableTitle: 'Wards', 
         columns: ['WARD_NO', 'DEPT_NAME'],
-        list: wards
+        list: wards,
+        type: 'ward'
     });  
 });
 
@@ -29,7 +30,8 @@ router.get('/id/:d_id/:w_no', async(req, res) => {
     res.render('admin-ward-info', {
         tableTitle: 'Ward', 
         columns: ['WARD_NO', 'DEPT_NAME'],
-        list: wards[0]
+        list: wards[0],
+        type: 'ward'
     });  
 });
 
