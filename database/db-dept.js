@@ -13,7 +13,40 @@ async function getDepartmentById(id) {
     return (await database.execute(sql, binds, database.options)).rows;
 }
 
+async function addDept(dept) {
+    const sql = `INSERT INTO DEPARTMENTS(ID, NAME) VALUES(:ID, :NAME)`;
+    const binds = {
+        ID: dept.ID,
+        NAME: dept.NAME
+    };
+    //console.log(binds);
+    await database.execute(sql, binds, database.options);
+}
+
+async function editDept(dept) {
+    const sql = `UPDATE DEPARTMENTS
+    SET ID = :ID WHERE ID = :OLD.ID AND NAME = :NAME`;
+    const binds = {
+        ID: dept.ID,
+        NAME: dept.NAME
+    };
+    //console.log(binds);
+    await database.execute(sql, binds, database.options);
+}
+
+async function deleteDept(id) {
+    const sql = `DELETE FROM DEPARTMENTS WHERE ID = :id`;
+    const binds = {
+        id: id
+    };
+    //console.log(binds);
+    await database.execute(sql, binds, database.options);
+}
+
 module.exports = {
     getAllDepartments,
-    getDepartmentById
+    getDepartmentById,
+    addDept,
+    editDept,
+    deleteDept
 }

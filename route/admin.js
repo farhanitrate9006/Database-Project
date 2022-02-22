@@ -23,6 +23,7 @@ router.get('/', async(req, res) => {
 });
 
 router.use('/employee', require('./employee'));
+router.use('/dept', require('./admin-dept'));
 router.use('/ward', require('./ward'));
 router.use('/room', require('./room'));
 router.use('/bed', require('./bed'));
