@@ -23,5 +23,6 @@ router.get('/', async(req, res) => {
 });
 
 router.use('/employee', require('./employee'));
+router.use('/ward', require('./ward'));
 
 module.exports = router

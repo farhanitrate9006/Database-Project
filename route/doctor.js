@@ -59,7 +59,6 @@ router.get('/add', async(req, res) => {
 });
 
 router.post('/add', async(req, res) => {
-    console.log('she');
     console.log(req.body);
     const doctor = req.body;
 

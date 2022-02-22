@@ -4,45 +4,15 @@
     <h1><%= formTitle %></h1>
     <form action="<%= postLink %>" method="post" style="font-size: 2rem;">
       <div class="form-group">
-        <label for="id">ID</label>
-        <input class="form-control" id="id" placeholder="Enter ID" name="id" 
-        value="<%= (typeof list !== 'undefined') ? list.ID : '' %>" required>
-      </div>
-
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input  class="form-control" id="name" placeholder="Enter name" name="name" 
-        value="<%= (typeof list !== 'undefined') ? list.DOCTOR_NAME : '' %>" required>
-      </div>
-
-      <div class="form-group">
-        <label for="phone_number">Phone Number</label>
-        <input class="form-control" id="phone_number" placeholder="Enter phone number" name="phone_number" 
-        value="<%= (typeof list !== 'undefined') ? list.PHONE_NUMBER : '' %>" required>
-      </div>
-
-      <div class="form-group">
-        <label for="email">Salary</label>
-        <input class="form-control" id="salary" placeholder="Enter salary" name="salary" 
-        value="<%= (typeof list !== 'undefined') ? list.SALARY : '' %>" required>
-      </div>
-
-      <div class="form-group">
-        <label for="pwd">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email"
-        value="<%= (typeof list !== 'undefined') ? list.EMAIL : '' %>" required>
-      </div>
-
-      <div class="form-group">
-        <label for="pwd">Password</label>
-        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password"
-        value="<%= (typeof list !== 'undefined') ? list.PASSWORD : '' %>" required>
+        <label for="id">Ward Number</label>
+        <input class="form-control" id="id" placeholder="Enter Ward Number" name="WARD_NO" 
+        value="<%= (typeof list !== 'undefined') ? list.WARD_NO : '' %>" required>
       </div>
 
       <% if(typeof list !== 'undefined') { %>
         <div class="form-group">
           <label for="id">Current Department</label>
-          <input class="form-control" id="id" name="WARD_NO" 
+          <input class="form-control" id="id" name="DEPT_NAME" 
           value="<%= list.DEPT_NAME %>" readonly>
         </div>
       <% } %>
@@ -71,7 +41,7 @@
         </select>
       </div> -->
 
-      <button type="submit" class="btn btn-primary" style="margin-bottom: 4%;">Submit</button>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
     <script src="js/jquery.js"></script>        
