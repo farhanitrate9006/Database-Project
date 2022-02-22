@@ -17,7 +17,18 @@ async function getWardById(d_id, w_no) {
     return (await database.execute(sql, binds, database.options)).rows;
 }
 
+async function addWard(ward) {
+    const sql = `INSERT INTO WARDS(WARD_NO, DEPARTMENT_ID) VALUES(:WARD_NO, :DEPARTMENT_ID)`;
+    const binds = {
+        WARD_NO: ward.WARD_NO,
+        DEPARTMENT_ID: ward.DEPARTMENT_ID
+    };
+    //console.log(binds);
+    await database.execute(sql, binds, database.options);
+}
+
 module.exports = {
     getAllWards,
-    getWardById
+    getWardById,
+    addWard
 }

@@ -19,8 +19,7 @@
 
       <div class="form-group">
         <label for="depts">Select Department</label>
-        <select name="dept">
-          <% var options = [] %>
+        <select name="DEPARTMENT_ID">
           <% for(var i = 0; i < depts.length; i++) { %>
             <option value="<%= depts[i].ID %>">
               <%= depts[i].NAME %>

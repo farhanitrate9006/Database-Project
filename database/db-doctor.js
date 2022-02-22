@@ -57,7 +57,7 @@ async function addDoctor(doctor) {
         PASSWORD: doctor.password
     };
 
-    console.log(binds);
+    //console.log(binds);
     await database.execute(sql, binds, database.options);
 }
 

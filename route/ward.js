@@ -68,11 +68,11 @@ router.get('/add', async(req, res) => {
 
 router.post('/add', async(req, res) => {
     // returns a list with 1 employee
-    console.log('she');
-    console.log(req.body);
-    const doctor = req.body;
+    //console.log('she');
+    //console.log(req.body);
+    const ward = req.body;
 
-    db_doctors.addDoctor(doctor);
+    db_wards.addWard(ward);
     res.redirect('/admin/ward');
 });
 
