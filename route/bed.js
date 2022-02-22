@@ -24,8 +24,9 @@ router.get('/', async(req, res) => {
 });
 
 // get a specific employee by his id
-router.get('/id/r_id/b_no', async(req, res) => {
+router.get('/id/:r_id/:b_no', async(req, res) => {
     // returns a list with 1 employee
+    //console.log('he');
     let beds = await db_beds.getBedById(req.params.r_id, req.params.b_no);
 
     res.render('admin-ward-info', {
@@ -37,9 +38,9 @@ router.get('/id/r_id/b_no', async(req, res) => {
 });
 
 // get a specific employee by his id
-router.get('/id/r_id/b_no/edit', async(req, res) => {
+router.get('/id/:r_id/:b_no/edit', async(req, res) => {
     // returns a list with 1 employee
-    let beds = await db_beds.getWardById(req.params.r_id, req.params.b_no);
+    let beds = await db_beds.getBedById(req.params.r_id, req.params.b_no);
     let rooms = await db_rooms.getAllRooms();
 
     res.render('admin-bed-form', {
@@ -50,7 +51,7 @@ router.get('/id/r_id/b_no/edit', async(req, res) => {
     });  
 });
 
-router.post('/id/r_id/b_no/edit', async(req, res) => {
+router.post('/id/:r_id/:b_no/edit', async(req, res) => {
     // returns a list with 1 employee
     console.log('he');
     const bed = req.body;
@@ -63,9 +64,9 @@ router.post('/id/r_id/b_no/edit', async(req, res) => {
 router.get('/add', async(req, res) => {
     let rooms = await db_rooms.getAllRooms();
     res.render('admin-bed-form', {
-        formTitle: 'Add New Ward',
+        formTitle: 'Add New Bed',
         postLink: '/admin/bed/add',
-        depts: depts
+        rooms: rooms
     });  
 });
 
@@ -79,9 +80,9 @@ router.post('/add', async(req, res) => {
     res.redirect('/admin/bed');
 });
 
-router.get('/id/r_id/b_no/delete', async(req, res) => {
+router.get('/id/:r_id/:b_no/delete', async(req, res) => {
     //console.log(req.params.r_id, req.params.b_no);
-    db_beds.deleteWard(req.params.r_id, req.params.b_no);
+    db_beds.deleteBed(req.params.r_id, req.params.b_no);
     res.redirect('/admin/bed');
 });
 

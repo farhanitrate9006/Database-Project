@@ -46,7 +46,7 @@ async function deleteBed(r_id, b_no) {
     const sql = `DELETE FROM BEDS WHERE ROOM_ID = :r_id AND BED_NO = :b_no`;
     const binds = {
         r_id: r_id,
-        w_no: b_no
+        b_no: b_no
     };
     //console.log(binds);
     await database.execute(sql, binds, database.options);
