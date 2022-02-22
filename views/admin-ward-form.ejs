@@ -9,24 +9,27 @@
         value="<%= (typeof list !== 'undefined') ? list.WARD_NO : '' %>" required>
       </div>
 
-      <% if(typeof list !== 'undefined') { %>
+      <% if(typeof list === 'undefined') { %>
         <div class="form-group">
-          <label for="id">Current Department</label>
-          <input class="form-control" id="id" name="DEPT_NAME" 
-          value="<%= list.DEPT_NAME %>" readonly>
+          <label for="depts">Select Department</label>
+          <select name="DEPARTMENT_ID">
+            <% for(var i = 0; i < depts.length; i++) { %>
+              <option value="<%= depts[i].ID %>">
+                <%= depts[i].NAME %>
+              </option>
+            <% } %>
+          </select>
         </div>
       <% } %>
 
-      <div class="form-group">
-        <label for="depts">Select Department</label>
-        <select name="DEPARTMENT_ID">
-          <% for(var i = 0; i < depts.length; i++) { %>
-            <option value="<%= depts[i].ID %>">
-              <%= depts[i].NAME %>
-            </option>
-          <% } %>
-        </select>
-      </div>
+      <% if(typeof list !== 'undefined') { %>
+        <div class="form-group">
+          <label for="id" name="DEPARTMENT_ID" value="<%= list.DEPT_ID %>">Current Department</label>
+          <input class="form-control" id="id" name="DEPT_NAME" 
+          value="<%= list.DEPT_NAME %>" readonly>
+          <input name="DEPARTMENT_ID" value="<%= list.DEPT_ID %>" hidden>
+        </div>
+      <% } %>
 
       <!-- <div class="form-group">
         <label for="categories">Mao</label>
