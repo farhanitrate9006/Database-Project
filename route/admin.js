@@ -5,6 +5,14 @@ const db_employees = require('../database/db-employee');
 
 const router = express.Router({ mergeParams : true });
 
+const redirectAdmin = (req, res, next) => {
+    if (!req.session.admin){
+        res.redirect('/login');
+    } else {
+        next();
+    }
+}
+
 // get a specific employee by his id
 router.get('/', async(req, res) => {
     let employeesObj = await db_employees.getAllEmployees();
@@ -27,6 +35,7 @@ router.use('/dept', require('./admin-dept'));
 router.use('/ward', require('./ward'));
 router.use('/room', require('./room'));
 router.use('/bed', require('./bed'));
+router.use('/schedule', require('./schedule'));
 // router.use('/test', require('./test'));
 // router.use('/medicine', require('./medicine'));
 

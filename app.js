@@ -2,6 +2,7 @@
 const express = require('express');
 // const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 // const cookieParser = require('cookie-parser');
 
 // middlewares/
@@ -16,6 +17,18 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.use(session({
+    name: process.env.SESSION_NAME,
+    resave: false,
+    saveUninitialized: false, 
+    secret: process.env.SESSION_SECRET,
+    cookie: {
+        maxAge: 1000*60*60*20,
+        sameSite: true,
+        
+    }
+}))
 // app.use(cookieParser());
 // app.use(auth);
 // app.use(morgan('tiny'));
