@@ -24,4 +24,34 @@ router.get('/', async(req, res) => {
     });  
 });
 
+// get a specific employee by his id
+router.get('/fill', async(req, res) => {
+    // returns a list with 1 employee
+    let deptObj = await db_departments.getAllDepartments();
+    let testObj = await db_tests.getAllTests();
+    let medicineObj = await db_medicines.getAllMedicines();
+
+    res.render('appointment-form', {
+        depts: deptObj,
+        tests: testObj,
+        medicines: medicineObj
+        //title: 'Thanks for booking appointment. Stay connected'
+    });  
+});
+
+router.post('/fix', async(req, res) => {
+    // returns a list with 1 employee
+    let deptObj = await db_departments.getAllDepartments();
+    let testObj = await db_tests.getAllTests();
+    let medicineObj = await db_medicines.getAllMedicines();
+    console.log(req.body);
+
+    res.render('home', {
+        depts: deptObj,
+        tests: testObj,
+        medicines: medicineObj,
+        title: 'Thanks for booking appointment. Stay connected'
+    });  
+});
+
 module.exports = router;

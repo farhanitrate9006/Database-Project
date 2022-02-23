@@ -34,7 +34,8 @@ router.get('/', async(req, res) => {
     res.render('home', { 
         depts: deptObj,
         tests: testObj,
-        medicines: medicineObj
+        medicines: medicineObj,
+        title: 'Home'
     });
     
 });
