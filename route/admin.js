@@ -38,6 +38,7 @@ router.use('/bed', require('./bed'));
 router.use('/schedule', require('./schedule'));
 router.use('/appointment', require('./admin-appointment'));
 router.use('/record', require('./record'));
+router.use('/patient', require('./patient'));
 // router.use('/test', require('./test'));
 // router.use('/medicine', require('./medicine'));
 
