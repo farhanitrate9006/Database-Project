@@ -3,6 +3,11 @@ const express = require('express');
 const { redirect } = require('express/lib/response');
 
 const db_login = require('../database/db-login');
+const db_schedules = require('../database/db-schedule');
+const db_departments = require('../database/db-dept');
+const db_tests = require('../database/db-test');
+const db_medicines = require('../database/db-medicine');
+
 const router = express.Router({ mergeParams : true });
 
 const redirectLogin = (req, res, next) => {
@@ -60,22 +65,24 @@ router.get('/dashboard', redirectLogin, async (req, res) => {
 
     const { userID } = req.session;
 
+    let deptObj = await db_departments.getAllDepartments();
+    let testObj = await db_tests.getAllTests();
+    let medicineObj = await db_medicines.getAllMedicines();
+
     try {
         let user = await db_login.findOneByID(userID);
         user = user[0];
+        let schedules = await db_schedules.getScheduleByDoc(userID);
     
-    res.send(`
-        <h1>Dashboard</h1>
-        <ul>
-            <li>Name: ${user.ID}</li>
-            <li>Email: ${user.EMAIL}</li>
-            <li>Department: ${user.DEPARTMENT_ID}</li>
-        </ul>
-        <form method='post' action='/login/logout'>
-            <button>Logout</button>
-        </form>
-    `)
-    } catch (err){
+        res.render('log-doctor', {
+            depts: deptObj,
+            tests: testObj,
+            medicines: medicineObj,
+            tableTitle: 'My Schedules',
+            list: schedules,
+            columns: ['APPOINT_DATE', 'START_TIME', 'END_TIME', 'SLOTS']
+        });
+    } catch (err) {
         console.log(err);
     }
 

@@ -7,6 +7,7 @@ const express = require('express');
 const db_departments = require('../database/db-dept');
 const db_tests = require('../database/db-test');
 const db_medicines = require('../database/db-medicine');
+const db_appointments = require('../database/db-appointment');
 
 const router = express.Router({ mergeParams : true });
 
@@ -25,26 +26,51 @@ router.get('/', async(req, res) => {
 });
 
 // get a specific employee by his id
-router.get('/fill', async(req, res) => {
+router.get('/:id/fill', async(req, res) => {
     // returns a list with 1 employee
     let deptObj = await db_departments.getAllDepartments();
     let testObj = await db_tests.getAllTests();
     let medicineObj = await db_medicines.getAllMedicines();
+    //doc_id = req.params.id;
 
     res.render('appointment-form', {
         depts: deptObj,
         tests: testObj,
-        medicines: medicineObj
+        medicines: medicineObj,
+        
+        list: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-']
         //title: 'Thanks for booking appointment. Stay connected'
     });  
 });
 
-router.post('/fix', async(req, res) => {
+router.post('/:id/fill', async(req, res) => {
+    // returns a list with 1 employee
+    console.log(req.body);
+    appoint_date = req.body.appoint_date;
+    start_time = req.body.start_time;
+    end_time = req.body.end_time;
+    doc_id = req.body.doc_id;
+
+    res.redirect('/appointment/' + req.params.id + '/fill');
+});
+
+router.post('/fill', async(req, res) => {
     // returns a list with 1 employee
     let deptObj = await db_departments.getAllDepartments();
     let testObj = await db_tests.getAllTests();
     let medicineObj = await db_medicines.getAllMedicines();
     console.log(req.body);
+    console.log(appoint_date);
+
+    
+    db_appointments.fixAppointment({
+        appoint_date: appoint_date,
+        start_time: start_time,
+        doc_id: doc_id,
+        name: req.body.name,
+        age: req.body.age,
+        blood_group: req.body.blood_group
+    });
 
     res.render('home', {
         depts: deptObj,

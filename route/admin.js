@@ -14,7 +14,7 @@ const redirectAdmin = (req, res, next) => {
 }
 
 // get a specific employee by his id
-router.get('/', async(req, res) => {
+router.get('/', redirectAdmin, async(req, res) => {
     let employeesObj = await db_employees.getAllEmployees();
     // let employees = [];
 

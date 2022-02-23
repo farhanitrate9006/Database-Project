@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>LA HOSPITAL</title>
+  <meta charset="utf-8">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  
+  <!-- my stylesheet -->
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <nav class="navbar header-navbar navbar-inverse">
+    <div class="container">
+      <div class="navbar-header">
+        <p class="navbar-brand"><a href="/" style="font-size: 2rem;">LA HOSPITAL</a></p>
+      </div>
+        <ul class="nav navbar-nav header-navbar-nav" style="flex-direction: row; font-size: 1.15rem;">
+          <!-- <li id="about"><a href="/"> Visit Home </a></li> -->
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Our Specialities <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <% depts.forEach(function(dept) { %>
+                    <li><a href="/dept/<%=dept.ID%>"> <%= dept.NAME %> </a></li>
+                <% }) %>
+            </ul>
+          </li>
+
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Explore Tests <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <% tests.forEach(function(test) { %>
+                    <li><a href="/test/<%=test.ID%>"> <%= test.NAME %> </a></li>
+                <% }) %>
+            </ul>
+          </li>
+
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Available Medicines <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <% medicines.forEach(function(medicine) { %>
+                    <li><a href="/medicine/<%=medicine.ID%>"> <%= medicine.NAME %> </a></li>
+                <% }) %>
+            </ul>
+          </li>  
+        </ul>
+
+        <ul class="nav navbar-nav header-navbar-nav navbar-right">
+            <li>
+              <form method='post' action='/login/logout'>
+                <button>Log out</button>
+              </form>
+              <!-- <a href="/login/logout"><span class="glyphicon glyphicon-log-in"></span> Log out </a> -->
+            </li>
+        </ul>
+    </div>
+  </nav>
+
+  <!-- <body>
+    <div class="container"> -->

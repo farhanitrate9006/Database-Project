@@ -13,20 +13,19 @@ async function getAppointmentById(id) {
     return (await database.execute(sql, binds, database.options)).rows;
 }
 
-async function fixAppointmentById(appointment) {
+async function fixAppointment(appointment) {
     const sql = `
         BEGIN
-            ADD_DOCTOR(:ID, :NAME, :PHONE_NUMBER, :SALARY, :DEPARTMENT_ID, :EMAIL, :PASSWORD);
+            FIX_APPOINTMENT(:DOC_ID, :APPOINT_DATE, :START_TIME, :NAME, :AGE, :BLOOD_GROUP);
         END;
     `;
     const binds = {
-        ID: appointment.id,
-        NAME: appointment.name, 
-        PHONE_NUMBER: appointment.phone_number, 
-        SALARY: appointment.salary, 
-        DEPARTMENT_ID: appointment.dept, 
-        EMAIL: appointment.email,
-        PASSWORD: appointment.password
+        DOC_ID: appointment.doc_id,
+        APPOINT_DATE: appointment.appoint_date,
+        START_TIME: appointment.start_time,
+        NAME: appointment.name,
+        AGE: appointment.age,
+        BLOOD_GROUP: appointment.blood_group
     };
 
     //console.log(binds);
@@ -68,5 +67,6 @@ module.exports = {
     getAppointmentById,
     addAppointment,
     editAppointment,
-    deleteAppointment
+    deleteAppointment,
+    fixAppointment
 }
