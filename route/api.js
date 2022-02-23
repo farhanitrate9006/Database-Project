@@ -45,6 +45,7 @@ router.get('/', async(req, res) => {
 router.use('/dept', require('./dept'));
 router.use('/test', require('./test'));
 router.use('/medicine', require('./medicine'));
+router.use('/appointment', require('./appointment'));
 router.use('/admin', require('./admin'));
 router.use('/login', require('./login'));
 

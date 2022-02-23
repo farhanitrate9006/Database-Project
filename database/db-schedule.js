@@ -13,6 +13,19 @@ async function getScheduleById(id) {
     return (await database.execute(sql, binds, database.options)).rows;
 }
 
+async function getScheduleByDept(id) {
+    const sql = `SELECT S.ID as ID, D.ID as DOC_ID, E.NAME as DOCTOR_NAME, P.NAME as DEPT_NAME, S.SLOTS as SLOTS,
+    S.START_DATE as APPOINT_DATE, S.START_TIME as START_TIME, S.END_TIME as END_TIME
+    FROM SCHEDULES S JOIN DOCTORS D on (S.DOC_ID = D.ID)
+    JOIN EMPLOYEES E on (D.ID = E.ID)
+    JOIN DEPARTMENTS P on (D.DEPARTMENT_ID = P.ID)
+    WHERE P.ID = :id`;
+    const binds = {
+        id : id
+    };
+    return (await database.execute(sql, binds, database.options)).rows;
+}
+
 async function addSchedule(schedule) {
     const sql = `INSERT INTO SCHEDULES(ID, DOC_ID, START_DATE, END_DATE, START_TIME, END_TIME, SLOTS)
     VALUES(:id, :doc_id, TO_DATE(:start_date,'YYYY-MM-DD'), TO_DATE(:end_date,'YYYY-MM-DD'), 
@@ -54,6 +67,7 @@ async function deleteSchedule(id) {
 module.exports = {
     getAllSchedules,
     getScheduleById,
+    getScheduleByDept,
     addSchedule,
     editSchedule,
     deleteSchedule

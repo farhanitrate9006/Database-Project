@@ -1,0 +1,12 @@
+<%- include('./header'); -%>
+
+  <div class="container">
+    <h1> Take appointment from: </h1>
+
+    <% depts.forEach(function(dept) { %>
+        <a href="/dept/<%= dept.ID %>/appointment" class="btn btn-info" role="button"><%= dept.NAME %></a>
+    <% }) %>
+    
+  </div>
+  
+<%- include('./footer'); -%>

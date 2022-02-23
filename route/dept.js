@@ -9,6 +9,7 @@ const db_tests = require('../database/db-test');
 const db_medicines = require('../database/db-medicine');
 
 const db_doctors = require('../database/db-doctor');
+const db_schedules = require('../database/db-schedule');
 
 const router = express.Router({ mergeParams : true });
 
@@ -62,6 +63,28 @@ router.get('/:id/doctor', async(req, res) => {
         tableTitle: doctors[0].DEPT_NAME + ' Doctors', 
         columns: ['ID', 'DOCTOR_NAME', 'DEPT_NAME'],
         list: doctors
+    });  
+});
+
+router.get('/:id/appointment', async(req, res) => {
+    // returns a list with 1 employee
+    let deptObj = await db_departments.getAllDepartments();
+    let testObj = await db_tests.getAllTests();
+    let medicineObj = await db_medicines.getAllMedicines();
+
+    //let doctors = await db_doctors.getDoctorsByDept(req.params.id);
+    let schedules = await db_schedules.getScheduleByDept(req.params.id);
+    //let dept = tempDept[0];
+    //console.log(req.params.DEPT_NAME)
+
+    res.render('table', {
+        depts: deptObj,
+        tests: testObj,
+        medicines: medicineObj,
+        tableTitle: schedules[0].DEPT_NAME + ' Doctors', 
+        columns: ['DOCTOR_NAME', 'APPOINT_DATE', 'START_TIME', 'END_TIME'],
+        list: schedules,
+        type: 'fix'
     });  
 });
 

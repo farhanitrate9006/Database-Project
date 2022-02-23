@@ -25,6 +25,13 @@
               <%  columns.forEach(function(column) { %>           
                 <td scope="col"> <%= row[column] %> </td>
               <% }) %>
+
+              <% if(type === 'fix') { %>
+                <td scope="col"> 
+                  <a href="/dept/appointment" class="btn btn-info" role="button">Fix</a>
+                </td>
+              <% } %>
+              
             </tr> 
           <% }) %>
 
