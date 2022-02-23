@@ -29,7 +29,8 @@
                     <td scope="col"> 
                       <a href="/admin/bed/id/<%= row['ROOM_ID'] %>/<%= row['BED_NO'] %>"> <%= row['BED_NO'] %> </a>
                     </td>
-                  <% } else if((type === 'dept' || type == 'schedule') && column === 'ID') { %>
+                  <% } else if((type === 'dept' || type === 'schedule' || 
+                        type === 'appointment' || type === 'record') && column === 'ID') { %>
                     <td scope="col"> 
                       <a href="/admin/<%= type %>/id/<%= row['ID'] %>"> <%= row['ID'] %> </a>
                     </td>
@@ -47,10 +48,11 @@
           </tbody>
       </table>
 
-      
-      <a role="button" href="/admin/<%= type %>/add" class="btn btn-primary btn-lg" 
-        style="font-size: 1.75rem; margin: 2.5% 2.5% 0 0;"> Add </a>
-
+      <% if(type !== 'appointment') { %>
+        <a role="button" href="/admin/<%= type %>/add" class="btn btn-primary btn-lg" 
+          style="font-size: 1.75rem; margin: 2.5% 2.5% 0 0;"> Add </a>
+      <% } %>
+     
       <script src="js/jquery.js"></script>        
       <script src="js/bootstrap.js"></script>
 

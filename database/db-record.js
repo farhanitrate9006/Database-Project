@@ -1,19 +1,52 @@
 const database = require('./db');
 
-async function getAllMedicines() {
-    const sql = `SELECT * FROM MEDICINE ORDER BY NAME`;
+async function getAllRecords() {
+    const sql = `SELECT * FROM RECORD`;
     return (await database.execute(sql, {}, database.options)).rows;
 }
 
-async function getMedicineById(id) {
-    const sql = `SELECT * FROM MEDICINE WHERE ID = :id`;
+async function getRecordById(id) {
+    const sql = `SELECT * FROM RECORD WHERE ID = :id`;
     const binds = {
         id : id
     };
     return (await database.execute(sql, binds, database.options)).rows;
 }
 
+async function addRecord(record) {
+    const sql = `INSERT INTO RECORD(ID, NAME) VALUES(:ID, :NAME)`;
+    const binds = {
+        ID: record.ID,
+        NAME: record.NAME
+    };
+    //console.log(binds);
+    await database.execute(sql, binds, database.options);
+}
+
+async function editRecord(record) {
+    const sql = `UPDATE RECORD
+    SET ID = :ID WHERE ID = :OLD.ID AND NAME = :NAME`;
+    const binds = {
+        ID: record.ID,
+        NAME: record.NAME
+    };
+    //console.log(binds);
+    await database.execute(sql, binds, database.options);
+}
+
+async function deleteRecord(id) {
+    const sql = `DELETE FROM RECORD WHERE ID = :id`;
+    const binds = {
+        id: id
+    };
+    //console.log(binds);
+    await database.execute(sql, binds, database.options);
+}
+
 module.exports = {
-    getAllMedicines,
-    getMedicineById
+    getAllRecords,
+    getRecordById,
+    addRecord,
+    editRecord,
+    deleteRecord
 }
