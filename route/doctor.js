@@ -45,7 +45,11 @@ router.get('/id/:id/edit', async(req, res) => {
 
 router.post('/edit', async(req, res) => {
     console.log('he');
-    console.log(req.body.email);
+    const doctor = req.body;
+    console.log(doctor);
+
+    db_doctors.editDoctor(doctor);
+    res.redirect('/admin/employee/doctor/');
 });
 
 router.get('/add', async(req, res) => {

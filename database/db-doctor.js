@@ -61,10 +61,26 @@ async function addDoctor(doctor) {
     await database.execute(sql, binds, database.options);
 }
 
+async function editDoctor(doctor){
+    const sql = `
+        UPDATE DOCTOR
+        SET PHONE NUMBER = :phone_number, SALARY = :salary, EMAIL = :email, PASSWORD = :password
+        WHERE ID = :id
+    `;
+    const binds = {
+        phone_number: doctor.phone_number,
+        salary: doctor.salary,
+        email: doctor.email,
+        password: doctor.password
+    };
+    await database.execute(sql, binds, database.options);
+}
+
 module.exports = {
     getAllDoctors,
     getDoctorsByDept,
     getDoctorById,
     getDoctorByEmail,
-    addDoctor
+    addDoctor,
+    editDoctor
 }

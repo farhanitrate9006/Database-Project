@@ -27,7 +27,13 @@ router.use('/dept', require('./admin-dept'));
 router.use('/ward', require('./ward'));
 router.use('/room', require('./room'));
 router.use('/bed', require('./bed'));
-// router.use('/test', require('./test'));
-// router.use('/medicine', require('./medicine'));
+router.use('/test', require('./test'));
+router.use('/medicine', require('./medicine'));
+router.use('/bill', require('./bill'));
+router.use('/diagnosis', require('./diagnosis'));
+router.use('/buys', require('./buys'));
+router.use('/nurse', require('./nurse'));
+router.use('/receptionist', require('./receptionist'));
+router.use('/staff', require('./staff'));
 
-module.exports = router
+module.exports = router;

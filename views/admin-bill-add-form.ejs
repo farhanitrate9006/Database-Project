@@ -1,0 +1,51 @@
+<%- include('./admin-sidebar') -%>
+
+<div class="container" style="margin-left: 250px; max-width: 25%; font-size: 3rem;">
+    <h1><%= formTitle %></h1>
+    <form action="<%= postLink %>" method="post" style="font-size: 2rem;">
+      <div class="form-group">
+        <label for="id">ID</label>
+        <input class="form-control" id="id" placeholder="Bill ID" name="ID"  required>
+      </div>
+
+      <div class="form-group">
+        <label for="id">Room Charge</label>
+        <input class="form-control" id="id" placeholder="Room Charge" name="ROOM_CHARGE"  required>
+      </div>
+
+      <div class="form-group">
+        <label for="id">Medicine Charge</label>
+        <input class="form-control" id="id" placeholder="Medicine Charge" name="MEDICINE_CHARGE"  required>
+      </div>
+
+      <div class="form-group">
+        <label for="id">Treatment Charge</label>
+        <input class="form-control" id="id" placeholder="Treatment Charge" name="TREATMENT_CHARGE"  required>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <script src="js/jquery.js"></script>        
+      <script src="js/bootstrap.js"></script>
+  
+      <script>
+          /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+          var dropdown = document.getElementsByClassName("dropdown-btn");
+          var i;
+          
+          for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+            });
+          }
+      </script>
+</div>
+  
+
+<%- include('./footer'); -%>

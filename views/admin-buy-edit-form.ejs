@@ -1,0 +1,61 @@
+<%- include('./admin-sidebar') -%>
+
+<div class="container" style="margin-left: 250px; max-width: 25%; font-size: 3rem;">
+    <h1><%= formTitle %></h1>
+    <form action="<%= postLink %>" method="post" style="font-size: 2rem;">
+      <div class="form-group">
+        <label for="id">Patient ID</label>
+        <input class="form-control" id="id" placeholder="Enter Patient ID" name="PATIENT_ID" value="<%= list.PATIENT_ID %>" readonly>
+      </div>
+
+      
+        <div class="form-group">
+          <label for="id" name="MEDICINE_ID">Medicine ID</label>
+          <input class="form-control" id="id" name="MEDICINE_ID"  value="<%= list.MEDICINE_ID %>" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="id" name="AMOUNT">Amount</label>
+            <input class="form-control" id="id" name="AMOUNT" value="<%= list.AMOUNT %>" required>
+          </div>
+      
+
+      <!-- <div class="form-group">
+        <label for="categories">Mao</label>
+        <select name="categories" value="C">
+            <option value="a">
+              A
+            </option>
+            <option value="b">
+              B
+            </option>
+        </select>
+      </div> -->
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <script src="js/jquery.js"></script>        
+      <script src="js/bootstrap.js"></script>
+  
+      <script>
+          /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+          var dropdown = document.getElementsByClassName("dropdown-btn");
+          var i;
+          
+          for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+            });
+          }
+      </script>
+</div>
+  
+
+<%- include('./footer'); -%>

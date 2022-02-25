@@ -33,8 +33,9 @@ async function addRoom(room) {
 
 async function editRoom(room) {
     const sql = `UPDATE ROOMS
-    SET ROOM_ID = :ROOM_ID WHERE ROOM_ID = :OLD.ROOM_ID AND DEPARTMENT_ID = :DEPARTMENT_ID`;
+    SET BEDS = :BEDS WHERE ROOM_ID = :ROOM_ID AND DEPARTMENT_ID = :DEPARTMENT_ID`;
     const binds = {
+        BEDS: room.BEDS,
         ROOM_ID: room.ROOM_ID,
         DEPARTMENT_ID: room.DEPARTMENT_ID
     };
