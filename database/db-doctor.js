@@ -1,14 +1,14 @@
 const database = require('./db');
 
 async function getAllDoctors() {
-    const sql = `SELECT D.ID as ID, E.NAME as DOCTOR_NAME, P.ID as DEPT_ID, P.NAME as DEPT_NAME
+    const sql = `SELECT D.ID as ID, E.NAME as DOCTOR_NAME, P.NAME as DEPT_NAME
     FROM DOCTORS D JOIN DEPARTMENTS P on (D.DEPARTMENT_ID = P.ID)
     JOIN EMPLOYEES E on (D.ID = E.ID)`;
     return (await database.execute(sql, {}, database.options)).rows;
 }
 
 async function getDoctorsByDept(dept) {
-    const sql = `SELECT D.ID as ID, E.NAME as DOCTOR_NAME, P.ID as DEPT_ID, P.NAME as DEPT_NAME
+    const sql = `SELECT D.ID as ID, E.NAME as DOCTOR_NAME, P.NAME as DEPT_NAME
     FROM DOCTORS D JOIN DEPARTMENTS P on (D.DEPARTMENT_ID = P.ID)
     JOIN EMPLOYEES E on (D.ID = E.ID) where D.DEPARTMENT_ID = :dept`;
     //where D.DEPARTMENT_ID = :dept
@@ -61,10 +61,26 @@ async function addDoctor(doctor) {
     await database.execute(sql, binds, database.options);
 }
 
+async function editDoctor(doctor){
+    const sql = `
+        UPDATE DOCTOR
+        SET PHONE NUMBER = :phone_number, SALARY = :salary, EMAIL = :email, PASSWORD = :password
+        WHERE ID = :id
+    `;
+    const binds = {
+        phone_number: doctor.phone_number,
+        salary: doctor.salary,
+        email: doctor.email,
+        password: doctor.password
+    };
+    await database.execute(sql, binds, database.options);
+}
+
 module.exports = {
     getAllDoctors,
     getDoctorsByDept,
     getDoctorById,
     getDoctorByEmail,
-    addDoctor
+    addDoctor,
+    editDoctor
 }
