@@ -14,7 +14,7 @@ const redirectAdmin = (req, res, next) => {
 }
 
 // get a specific employee by his id
-router.get('/', async(req, res) => {
+router.get('/', redirectAdmin, async(req, res) => {
     let employeesObj = await db_employees.getAllEmployees();
     // let employees = [];
 
@@ -35,11 +35,20 @@ router.use('/dept', require('./admin-dept'));
 router.use('/ward', require('./ward'));
 router.use('/room', require('./room'));
 router.use('/bed', require('./bed'));
+
 router.use('/schedule', require('./schedule'));
 router.use('/appointment', require('./admin-appointment'));
 router.use('/record', require('./record'));
 router.use('/patient', require('./patient'));
-// router.use('/test', require('./test'));
-// router.use('/medicine', require('./medicine'));
 
-module.exports = router
+router.use('/test', require('./test'));
+router.use('/medicine', require('./medicine'));
+router.use('/bill', require('./bill'));
+router.use('/diagnosis', require('./diagnosis'));
+router.use('/buys', require('./buys'));
+router.use('/nurse', require('./nurse'));
+router.use('/receptionist', require('./receptionist'));
+router.use('/staff', require('./staff'));
+
+
+module.exports = router;

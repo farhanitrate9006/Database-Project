@@ -1,0 +1,77 @@
+<%- include('./admin-sidebar') -%>
+
+<div class="container" style="margin-left: 250px; max-width: 25%; font-size: 3rem;">
+    <h1><%= formTitle %></h1>
+    <form action="<%= postLink %>" method="post" style="font-size: 2rem;">
+      <div class="form-group">
+        <label for="id">ID</label>
+        <input class="form-control" id="id" placeholder="Enter ID" name="ID" 
+        value="<%= (typeof list !== 'undefined') ? list.ID : '' %>" readonly>
+      </div>
+
+      
+      <% if(typeof list !== 'undefined') { %>
+        <div class="form-group">
+          <label for="id">Doctor ID</label>
+          <input class="form-control" id="id" name="DOCTOR_ID" 
+          value="<%= list.DOCTOR_ID %>" required>
+        </div>
+
+        <div class="form-group">
+            <label for="id">Patient ID</label>
+            <input class="form-control" id="id" name="PATIENT_ID" 
+            value="<%= list.PATIENT_ID %>" required>
+          </div>
+
+          <div class="form-group">
+            <label for="id">Test ID</label>
+            <input class="form-control" id="id" name="TEST_ID" 
+            value="<%= list.TEST_ID %>" required>
+          </div>
+
+          <div class="form-group">
+            <label for="id">Result</label>
+            <input class="form-control" id="id" name="RESULT" 
+            value="<%= list.RESULT %>" required>
+          </div>
+      <% } %>
+
+      <!-- <div class="form-group">
+        <label for="categories">Mao</label>
+        <select name="categories" value="C">
+            <option value="a">
+              A
+            </option>
+            <option value="b">
+              B
+            </option>
+        </select>
+      </div> -->
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <script src="js/jquery.js"></script>        
+      <script src="js/bootstrap.js"></script>
+  
+      <script>
+          /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+          var dropdown = document.getElementsByClassName("dropdown-btn");
+          var i;
+          
+          for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+            });
+          }
+      </script>
+</div>
+  
+
+<%- include('./footer'); -%>

@@ -10,37 +10,73 @@ const db_medicines = require('../database/db-medicine');
 
 const router = express.Router({ mergeParams : true });
 
-// get all employees
-// router.get('/all', async (req, res) => {
-//     let employeesObj = await db_employees.getAllEmployees();
-//     // let employees = [];
+router.get('/', async(req, res) => {
+    let tests = await db_tests.getAllTests();
 
-//     // for(let i = 0; i<employeesObj.length; i++){
-//     //     employees.push(employeesObj[i]);
-//     //     //console.log(employeesObj[i]);
-//     // }
+    res.render('admin-tests', {
+        tableTitle: 'Tests', 
+        columns: ['ID', 'NAME', 'FEE', 'ROOM_ID'],
+        list: tests,
+        type: 'test'
+    });  
+});
 
-//     res.render('table', {
-//         employees: employeesObj
-//     });   
-// });
 
 // get a specific employee by his id
-router.get('/:id', async(req, res) => {
-    // returns a list with 1 employee
-    let deptObj = await db_departments.getAllDepartments();
-    let testObj = await db_tests.getAllTests();
-    let medicineObj = await db_medicines.getAllMedicines();
-
+router.get('/id/:id', async(req, res) => {
     let tempTest = await db_tests.getTestById(req.params.id);
     let test = tempTest[0];
 
-    res.render('test', {
-        depts: deptObj,
-        tests: testObj,
-        medicines: medicineObj,
-        test: test
+    res.render('admin-test-info', {
+        tableTitle: 'Test', 
+        columns: ['ID', 'NAME', 'FEE', 'ROOM_ID'],
+        list: test,
+        type: 'test'
+    });    
+});
+
+router.get('/id/:id/edit', async(req, res) => {
+    // returns a list with 1 employee
+    let test = await db_tests.getTestById(req.params.id);
+
+    res.render('admin-test-form', {
+        formTitle: 'Edit Test', 
+        list: test[0],
+        postLink: '/admin/test/id/:id/edit'
+        // depts: depts,
+        // wards: wards
     });  
+});
+
+router.post('/id/:id/edit', async(req, res) => {
+    // returns a list with 1 employee
+    //console.log('he');
+    const test = req.body;
+    console.log(test);
+
+    db_tests.editTest(test);
+    res.redirect('/admin/test');
+});
+
+router.get('/add', async(req, res) => {
+    res.render('admin-test-add-form', {
+        formTitle: 'Add New Test',
+        postLink: '/admin/test/add'
+    });  
+});
+
+router.post('/add', async(req, res) => {
+    const test = req.body;
+
+    console.log(test);
+    db_tests.addTest(test);
+    res.redirect('/admin/test');
+});
+
+router.get('/id/:id/delete', async(req, res) => {
+    //console.log(req.params.d_id, req.params.w_id);
+    db_tests.deleteTest(req.params.id);
+    res.redirect('/admin/test');
 });
 
 module.exports = router;

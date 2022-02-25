@@ -4,18 +4,12 @@
     <h1><%= formTitle %></h1>
     <form action="<%= postLink %>" method="post" style="font-size: 2rem;">
       <div class="form-group">
-        <label for="id">Room Number</label>
-        <input class="form-control" id="id" placeholder="Enter Room Number" name="ROOM_ID" 
-        value="<%= (typeof list !== 'undefined') ? list.ROOM_ID : '' %>" readonly>
+        <label for="id">ID</label>
+        <input class="form-control" id="id" placeholder="Enter ID" name="ID" 
+        value="<%= (typeof list !== 'undefined') ? list.ID : '' %>" readonly>
       </div>
 
-      <div class="form-group">
-        <label for="id">Beds</label>
-        <input class="form-control" id="id" placeholder="Enter Bed Number" name="BEDS" 
-        value="<%= (typeof list !== 'undefined') ? list.BEDS : '' %>" required>
-      </div>
-
-      <% if(typeof list === 'undefined') { %>
+      <!-- <% if(typeof list === 'undefined') { %>
         <div class="form-group">
           <label for="depts">Select Department</label>
           <select name="DEPARTMENT_ID">
@@ -26,40 +20,26 @@
             <% } %>
           </select>
         </div>
-      <% } %>
+      <% } %> -->
 
       <% if(typeof list !== 'undefined') { %>
         <div class="form-group">
-          <label for="id">Current Department</label>
-          <input class="form-control" id="id" name="DEPT_NAME" 
-          value="<%= list.DEPT_NAME %>" readonly>
-          <input name="DEPARTMENT_ID" value="<%= list.DEPT_ID %>" hidden>
+          <label for="id">Name</label>
+          <input class="form-control" id="id" name="NAME" 
+          value="<%= list.NAME %>" required>
         </div>
-      <% } %>
 
-      <% if(typeof list === 'undefined') { %>
         <div class="form-group">
-          <label for="depts">Select Ward</label>
-          <select name="WARD_NO">
-            <% for(var i = 0; i < depts.length; i++) { %>
-                <% wards.forEach(function(ward) { %>
-                   <% if(depts[i].ID == ward.DEPT_ID) { %>
-                        <option value="<%= ward.WARD_NO %>">
-                            <%= depts[i].NAME %> - <%= ward.WARD_NO %>
-                        </option>
-                   <% } %>
-                <% }) %>
-            <% } %>
-          </select>
-        </div>
-      <% } %>
+            <label for="id">Fee</label>
+            <input class="form-control" id="id" name="FEE" 
+            value="<%= list.FEE %>" required>
+          </div>
 
-      <% if(typeof list !== 'undefined') { %>
-        <div class="form-group">
-          <label for="id">Current Ward</label>
-          <input class="form-control" id="id" name="WARD_NO" 
-          value="<%= list.WARD_NO %>" readonly>
-        </div>
+          <div class="form-group">
+            <label for="id">ROOM ID</label>
+            <input class="form-control" id="id" name="ROOM_ID" 
+            value="<%= list.ROOM_ID %>" required>
+          </div>
       <% } %>
 
       <!-- <div class="form-group">
