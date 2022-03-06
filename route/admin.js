@@ -13,8 +13,10 @@ const redirectAdmin = (req, res, next) => {
     }
 }
 
+router.use(redirectAdmin);
+
 // get a specific employee by his id
-router.get('/', redirectAdmin, async(req, res) => {
+router.get('/', async(req, res) => {
     let employeesObj = await db_employees.getAllEmployees();
     // let employees = [];
 
